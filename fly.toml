@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for minimarket-laravel on 2024-04-23T19:38:21-05:00
+# fly.toml app configuration file generated for minimarket-laravel on 2024-04-23T20:47:14-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -14,6 +14,12 @@ console_command = 'php /var/www/html/artisan tinker'
 
 [env]
   APP_ENV = 'production'
+  DB_CONNECTION = 'mysql'
+  DB_DATABASE = 'brwknyyxc7knxxgnb8li'
+  DB_HOST = 'brwknyyxc7knxxgnb8li-mysql.services.clever-cloud.com'
+  DB_PASSWORD = 'tP8IZLL3X7xzQCan1E7b'
+  DB_PORT = '3306'
+  DB_USERNAME = 'udvtc9enfr3wep8c'
   LOG_CHANNEL = 'stderr'
   LOG_LEVEL = 'info'
   LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
@@ -29,6 +35,4 @@ console_command = 'php /var/www/html/artisan tinker'
   processes = ['app']
 
 [[vm]]
-  memory = '512mb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'
