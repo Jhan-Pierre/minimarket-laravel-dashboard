@@ -17,13 +17,13 @@ return new class extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100)->unique();
-            $table->string("codigoBarras", 50)->unique();
-            $table->decimal('precio_compra', 10,2);
-            $table->decimal('precio_venta', 10,2);
-            $table->integer('stock_disponible');
-            $table->foreignId('id_categoria_producto')->constrained('tb_categoria_producto');
-            $table->foreignId('id_estado')->constrained('tb_estado');
+            $table->string('name', 100)->unique();
+            $table->string("barcode", 50)->unique();
+            $table->decimal('purchase_price', 10,2);
+            $table->decimal('sale_price', 10,2);
+            $table->integer('stock');
+            $table->foreignId('category_id')->constrained('tb_categoria_producto');
+            $table->foreignId('state_id')->constrained('tb_estado');
             $table->timestamps();
         });
 
@@ -45,42 +45,42 @@ return new class extends Migration
 
         // Inserciones para tb_producto
         DB::table('products')->insert([
-            ['nombre' => 'Atún enlatado', 'precio_compra' => 3.1, 'precio_venta' => 3.99, 'stock_disponible' => 50, 'codigoBarras' => '0123456789099', 'id_categoria_producto' => 1, 'id_estado' => 1],
-            ['nombre' => 'Sopa de fideos enlatada', 'precio_compra' => 0.8, 'precio_venta' => 1.75, 'stock_disponible' => 80, 'codigoBarras' => '1234567890188', 'id_categoria_producto' => 1, 'id_estado' => 1],
-            ['nombre' => 'Maíz enlatado', 'precio_compra' => 0.95, 'precio_venta' => 1.49, 'stock_disponible' => 60, 'codigoBarras' => '2345678901277', 'id_categoria_producto' => 1, 'id_estado' => 1],
-            ['nombre' => 'Manzanas', 'precio_compra' => 1.98, 'precio_venta' => 2.99, 'stock_disponible' => 50, 'codigoBarras' => '1234567890166', 'id_categoria_producto' => 2, 'id_estado' => 1],
-            ['nombre' => 'Plátanos', 'precio_compra' => 0.97, 'precio_venta' => 1.75, 'stock_disponible' => 80, 'codigoBarras' => '2345678901255', 'id_categoria_producto' => 2, 'id_estado' => 1],
-            ['nombre' => 'Naranjas', 'precio_compra' => 0.85, 'precio_venta' => 1.49, 'stock_disponible' => 60, 'codigoBarras' => '3456789012344', 'id_categoria_producto' => 2, 'id_estado' => 1],
-            ['nombre' => 'Coca-Cola', 'precio_compra' => 1.2, 'precio_venta' => 1.99, 'stock_disponible' => 100, 'codigoBarras' => '1234567890133', 'id_categoria_producto' => 3, 'id_estado' => 1],
-            ['nombre' => 'Pepsi', 'precio_compra' => 0.94, 'precio_venta' => 1.75, 'stock_disponible' => 120, 'codigoBarras' => '2345678901222', 'id_categoria_producto' => 3, 'id_estado' => 1],
-            ['nombre' => 'Sprite', 'precio_compra' => 0.80, 'precio_venta' => 1.49, 'stock_disponible' => 80, 'codigoBarras' => '3456789012311', 'id_categoria_producto' => 3, 'id_estado' => 1],
-            ['nombre' => 'Papas Fritas', 'precio_compra' => 0.96, 'precio_venta' => 1.99, 'stock_disponible' => 100, 'codigoBarras' => '1234567890197', 'id_categoria_producto' => 4, 'id_estado' => 1],
-            ['nombre' => 'Galletas', 'precio_compra' => 0.95, 'precio_venta' => 1.75, 'stock_disponible' => 120, 'codigoBarras' => '2345678901264', 'id_categoria_producto' => 4, 'id_estado' => 1],
-            ['nombre' => 'Chocolate', 'precio_compra' => 0.60, 'precio_venta' => 1.49, 'stock_disponible' => 80, 'codigoBarras' => '3456789012331', 'id_categoria_producto' => 4, 'id_estado' => 1],
-            ['nombre' => 'Detergente líquido', 'precio_compra' => 1.63, 'precio_venta' => 3.99, 'stock_disponible' => 50, 'codigoBarras' => '1994567890123', 'id_categoria_producto' => 5, 'id_estado' => 1],
-            ['nombre' => 'Lejía', 'precio_compra' => 1.62, 'precio_venta' => 2.75, 'stock_disponible' => 80, 'codigoBarras' => '2345678901234', 'id_categoria_producto' => 5, 'id_estado' => 1],
-            ['nombre' => 'Limpiador multiusos', 'precio_compra' => 0.95, 'precio_venta' => 1.99, 'stock_disponible' => 60, 'codigoBarras' => '3886789012345', 'id_categoria_producto' => 5, 'id_estado' => 1],
-            ['nombre' => 'Mantequilla', 'precio_compra' => 1.84, 'precio_venta' => 2.25, 'stock_disponible' => 90, 'codigoBarras' => '4777890123456', 'id_categoria_producto' => 6, 'id_estado' => 1],
-            ['nombre' => 'Yogur natural', 'precio_compra' => 0.96, 'precio_venta' => 1.75, 'stock_disponible' => 80, 'codigoBarras' => '2665678901234', 'id_categoria_producto' => 6, 'id_estado' => 1],
-            ['nombre' => 'Queso fresco', 'precio_compra' => 1.67, 'precio_venta' => 3.99, 'stock_disponible' => 60, 'codigoBarras' => '3556789012345', 'id_categoria_producto' => 6, 'id_estado' => 1],
-            ['nombre' => 'Zanahorias', 'precio_compra' => 0.45, 'precio_venta' => 0.99, 'stock_disponible' => 80, 'codigoBarras' => '8441234567890', 'id_categoria_producto' => 7, 'id_estado' => 1],
-            ['nombre' => 'Tomates', 'precio_compra' => 1.1, 'precio_venta' => 1.49, 'stock_disponible' => 50, 'codigoBarras' => '7833123456789', 'id_categoria_producto' => 7, 'id_estado' => 1],
-            ['nombre' => 'Espinacas', 'precio_compra' => 0.96, 'precio_venta' => 1.25, 'stock_disponible' => 70, 'codigoBarras' => '9022345678901', 'id_categoria_producto' => 7, 'id_estado' => 1],
-            ['nombre' => 'Pilsen', 'precio_compra' => 1.21, 'precio_venta' => 2.99, 'stock_disponible' => 100, 'codigoBarras' => '1114567890123', 'id_categoria_producto' => 8, 'id_estado' => 1],
-            ['nombre' => 'Cristal', 'precio_compra' => 1.94, 'precio_venta' => 3.25, 'stock_disponible' => 120, 'codigoBarras' => '2005678901234', 'id_categoria_producto' => 8, 'id_estado' => 1],
-            ['nombre' => 'Cusqueña', 'precio_compra' => 1.84, 'precio_venta' => 3.49, 'stock_disponible' => 80, 'codigoBarras' => '3456798012345', 'id_categoria_producto' => 8, 'id_estado' => 1],
-            ['nombre' => 'Champú', 'precio_compra' => 2.61, 'precio_venta' => 4.99, 'stock_disponible' => 50, 'codigoBarras' => '1234561290123', 'id_categoria_producto' => 9, 'id_estado' => 1],
-            ['nombre' => 'Jabón de baño', 'precio_compra' => 1.6, 'precio_venta' => 1.75, 'stock_disponible' => 80, 'codigoBarras' => '2345673901234', 'id_categoria_producto' => 9, 'id_estado' => 1],
-            ['nombre' => 'Crema hidratante', 'precio_compra' => 2.63, 'precio_venta' => 3.49, 'stock_disponible' => 60, 'codigoBarras' => '3456749012345', 'id_categoria_producto' => 9, 'id_estado' => 1],
-            ['nombre' => 'Helado de vainilla', 'precio_compra' => 1.95, 'precio_venta' => 2.99, 'stock_disponible' => 70, 'codigoBarras' => '4567870123456', 'id_categoria_producto' => 10, 'id_estado' => 1],
-            ['nombre' => 'Helado de chocolate', 'precio_compra' => 2.1, 'precio_venta' => 3.25, 'stock_disponible' => 80, 'codigoBarras' => '5678081234567', 'id_categoria_producto' => 10, 'id_estado' => 1],
-            ['nombre' => 'Helado de fresa', 'precio_compra' => 1.94, 'precio_venta' => 3.49, 'stock_disponible' => 90, 'codigoBarras' => '6789010645678', 'id_categoria_producto' => 10, 'id_estado' => 1],
-            ['nombre' => 'Pan de molde', 'precio_compra' => 0.98, 'precio_venta' => 1.99, 'stock_disponible' => 50, 'codigoBarras' => '1234505890123', 'id_categoria_producto' => 11, 'id_estado' => 1],
-            ['nombre' => 'Croissants', 'precio_compra' => 0.57, 'precio_venta' => 1.25, 'stock_disponible' => 60, 'codigoBarras' => '2345678041234', 'id_categoria_producto' => 11, 'id_estado' => 1],
-            ['nombre' => 'Baguettes', 'precio_compra' => 1.21, 'precio_venta' => 2.49, 'stock_disponible' => 40, 'codigoBarras' => '3456780312345', 'id_categoria_producto' => 11, 'id_estado' => 1],
-            ['nombre' => 'Filete de pollo', 'precio_compra' => 3.58, 'precio_venta' => 5.99, 'stock_disponible' => 70, 'codigoBarras' => '4567894023456', 'id_categoria_producto' => 12, 'id_estado' => 1],
-            ['nombre' => 'Filete de salmón', 'precio_compra' => 7.12, 'precio_venta' => 8.25, 'stock_disponible' => 80, 'codigoBarras' => '5678900034567', 'id_categoria_producto' => 12, 'id_estado' => 1],
-            ['nombre' => 'Lomo de cerdo', 'precio_compra' => 5.12, 'precio_venta' => 6.49, 'stock_disponible' => 90, 'codigoBarras' => '6789011745678', 'id_categoria_producto' => 12, 'id_estado' => 1],
+            ['name' => 'Atún enlatado', 'purchase_price' => 3.1, 'sale_price' => 3.99, 'stock' => 50, 'barcode' => '0123456789099', 'category_id' => 1, 'state_id' => 1],
+            ['name' => 'Sopa de fideos enlatada', 'purchase_price' => 0.8, 'sale_price' => 1.75, 'stock' => 80, 'barcode' => '1234567890188', 'category_id' => 1, 'state_id' => 1],
+            ['name' => 'Maíz enlatado', 'purchase_price' => 0.95, 'sale_price' => 1.49, 'stock' => 60, 'barcode' => '2345678901277', 'category_id' => 1, 'state_id' => 1],
+            ['name' => 'Manzanas', 'purchase_price' => 1.98, 'sale_price' => 2.99, 'stock' => 50, 'barcode' => '1234567890166', 'category_id' => 2, 'state_id' => 1],
+            ['name' => 'Plátanos', 'purchase_price' => 0.97, 'sale_price' => 1.75, 'stock' => 80, 'barcode' => '2345678901255', 'category_id' => 2, 'state_id' => 1],
+            ['name' => 'Naranjas', 'purchase_price' => 0.85, 'sale_price' => 1.49, 'stock' => 60, 'barcode' => '3456789012344', 'category_id' => 2, 'state_id' => 1],
+            ['name' => 'Coca-Cola', 'purchase_price' => 1.2, 'sale_price' => 1.99, 'stock' => 100, 'barcode' => '1234567890133', 'category_id' => 3, 'state_id' => 1],
+            ['name' => 'Pepsi', 'purchase_price' => 0.94, 'sale_price' => 1.75, 'stock' => 120, 'barcode' => '2345678901222', 'category_id' => 3, 'state_id' => 1],
+            ['name' => 'Sprite', 'purchase_price' => 0.80, 'sale_price' => 1.49, 'stock' => 80, 'barcode' => '3456789012311', 'category_id' => 3, 'state_id' => 1],
+            ['name' => 'Papas Fritas', 'purchase_price' => 0.96, 'sale_price' => 1.99, 'stock' => 100, 'barcode' => '1234567890197', 'category_id' => 4, 'state_id' => 1],
+            ['name' => 'Galletas', 'purchase_price' => 0.95, 'sale_price' => 1.75, 'stock' => 120, 'barcode' => '2345678901264', 'category_id' => 4, 'state_id' => 1],
+            ['name' => 'Chocolate', 'purchase_price' => 0.60, 'sale_price' => 1.49, 'stock' => 80, 'barcode' => '3456789012331', 'category_id' => 4, 'state_id' => 1],
+            ['name' => 'Detergente líquido', 'purchase_price' => 1.63, 'sale_price' => 3.99, 'stock' => 50, 'barcode' => '1994567890123', 'category_id' => 5, 'state_id' => 1],
+            ['name' => 'Lejía', 'purchase_price' => 1.62, 'sale_price' => 2.75, 'stock' => 80, 'barcode' => '2345678901234', 'category_id' => 5, 'state_id' => 1],
+            ['name' => 'Limpiador multiusos', 'purchase_price' => 0.95, 'sale_price' => 1.99, 'stock' => 60, 'barcode' => '3886789012345', 'category_id' => 5, 'state_id' => 1],
+            ['name' => 'Mantequilla', 'purchase_price' => 1.84, 'sale_price' => 2.25, 'stock' => 90, 'barcode' => '4777890123456', 'category_id' => 6, 'state_id' => 1],
+            ['name' => 'Yogur natural', 'purchase_price' => 0.96, 'sale_price' => 1.75, 'stock' => 80, 'barcode' => '2665678901234', 'category_id' => 6, 'state_id' => 1],
+            ['name' => 'Queso fresco', 'purchase_price' => 1.67, 'sale_price' => 3.99, 'stock' => 60, 'barcode' => '3556789012345', 'category_id' => 6, 'state_id' => 1],
+            ['name' => 'Zanahorias', 'purchase_price' => 0.45, 'sale_price' => 0.99, 'stock' => 80, 'barcode' => '8441234567890', 'category_id' => 7, 'state_id' => 1],
+            ['name' => 'Tomates', 'purchase_price' => 1.1, 'sale_price' => 1.49, 'stock' => 50, 'barcode' => '7833123456789', 'category_id' => 7, 'state_id' => 1],
+            ['name' => 'Espinacas', 'purchase_price' => 0.96, 'sale_price' => 1.25, 'stock' => 70, 'barcode' => '9022345678901', 'category_id' => 7, 'state_id' => 1],
+            ['name' => 'Pilsen', 'purchase_price' => 1.21, 'sale_price' => 2.99, 'stock' => 100, 'barcode' => '1114567890123', 'category_id' => 8, 'state_id' => 1],
+            ['name' => 'Cristal', 'purchase_price' => 1.94, 'sale_price' => 3.25, 'stock' => 120, 'barcode' => '2005678901234', 'category_id' => 8, 'state_id' => 1],
+            ['name' => 'Cusqueña', 'purchase_price' => 1.84, 'sale_price' => 3.49, 'stock' => 80, 'barcode' => '3456798012345', 'category_id' => 8, 'state_id' => 1],
+            ['name' => 'Champú', 'purchase_price' => 2.61, 'sale_price' => 4.99, 'stock' => 50, 'barcode' => '1234561290123', 'category_id' => 9, 'state_id' => 1],
+            ['name' => 'Jabón de baño', 'purchase_price' => 1.6, 'sale_price' => 1.75, 'stock' => 80, 'barcode' => '2345673901234', 'category_id' => 9, 'state_id' => 1],
+            ['name' => 'Crema hidratante', 'purchase_price' => 2.63, 'sale_price' => 3.49, 'stock' => 60, 'barcode' => '3456749012345', 'category_id' => 9, 'state_id' => 1],
+            ['name' => 'Helado de vainilla', 'purchase_price' => 1.95, 'sale_price' => 2.99, 'stock' => 70, 'barcode' => '4567870123456', 'category_id' => 10, 'state_id' => 1],
+            ['name' => 'Helado de chocolate', 'purchase_price' => 2.1, 'sale_price' => 3.25, 'stock' => 80, 'barcode' => '5678081234567', 'category_id' => 10, 'state_id' => 1],
+            ['name' => 'Helado de fresa', 'purchase_price' => 1.94, 'sale_price' => 3.49, 'stock' => 90, 'barcode' => '6789010645678', 'category_id' => 10, 'state_id' => 1],
+            ['name' => 'Pan de molde', 'purchase_price' => 0.98, 'sale_price' => 1.99, 'stock' => 50, 'barcode' => '1234505890123', 'category_id' => 11, 'state_id' => 1],
+            ['name' => 'Croissants', 'purchase_price' => 0.57, 'sale_price' => 1.25, 'stock' => 60, 'barcode' => '2345678041234', 'category_id' => 11, 'state_id' => 1],
+            ['name' => 'Baguettes', 'purchase_price' => 1.21, 'sale_price' => 2.49, 'stock' => 40, 'barcode' => '3456780312345', 'category_id' => 11, 'state_id' => 1],
+            ['name' => 'Filete de pollo', 'purchase_price' => 3.58, 'sale_price' => 5.99, 'stock' => 70, 'barcode' => '4567894023456', 'category_id' => 12, 'state_id' => 1],
+            ['name' => 'Filete de salmón', 'purchase_price' => 7.12, 'sale_price' => 8.25, 'stock' => 80, 'barcode' => '5678900034567', 'category_id' => 12, 'state_id' => 1],
+            ['name' => 'Lomo de cerdo', 'purchase_price' => 5.12, 'sale_price' => 6.49, 'stock' => 90, 'barcode' => '6789011745678', 'category_id' => 12, 'state_id' => 1],
         ]);
 
     }
