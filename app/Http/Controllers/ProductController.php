@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = DB::select('call sp_list_products()');
         return view('products.index', compact('products'));
         //alternativas a compact
         //return view('students.index')->with('students', $students);
@@ -76,4 +77,12 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
+
+    // Store procedures
+    public function sp_list_products(){
+        $product = DB::select('call sp_list_products()');
+
+        return view('products.index', compact('product'));
+    }
+
 }
