@@ -7,9 +7,16 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
+
+            <x-alert2 type="warning" id="alerta">
+
+                <x-slot name="title">
+                    Titulo de Prueba 2
+                </x-slot>
+
+                <p>Esto es un texto de prueba</p>
+            </x-alert2>
+
         </div>
     </div>
 </x-app-layout>

@@ -19,6 +19,7 @@
         @livewireStyles
         <link rel="stylesheet" href="{{ asset('css/alertify.min.css') }}">
 
+
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -40,6 +41,8 @@
                 {{ $slot }}
             </main>
         </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
         @stack('modals')
 
