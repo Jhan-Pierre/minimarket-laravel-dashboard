@@ -1,6 +1,6 @@
 -- create database bd_minimarket;
 -- drop database bd_minimarket;
-use bxpqgpobaybia5qpscw2;
+use brwknyyxc7knxxgnb8li;
 
 CREATE TABLE tb_estado(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
