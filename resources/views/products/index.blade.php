@@ -1,12 +1,12 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Products List') }}
-        </h2>
-    </x-slot>
-
 
     <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+        <x-slot name="header" >
+            <h2 class="text-4xl font-bold dark:text-white">
+                {{ __('Products List') }}
+            </h2>
+        </x-slot>
+
         <!-- Start coding here -->
         <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">

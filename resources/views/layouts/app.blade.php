@@ -27,25 +27,24 @@
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @livewire('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            
 
             <!-- Page Content -->
             <main>
-
                 <div class="p-4 sm:ml-64">
-                    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-                        {{ $slot }}
+                    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+                        <!-- Main Heading -->
+                        @if (isset($header))
+                            <div class="flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
+                                {{ $header }}
+                            </div>
+                        @endif
+                        
+                        <div class="flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
+                            {{ $slot }}
+                        </div>
                     </div>
-                </div>
-
-                
+                </div>        
             </main>
         </div>
         
