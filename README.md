@@ -64,3 +64,9 @@ php artisan key:generate
 
 php artisan migrate
 ```
+
+6. Para cargar los asset para js y css:
+
+```bash
+npm run build
+```
