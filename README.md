@@ -44,6 +44,8 @@ cp .env.example .env
 
 En el archivo **.env** modificar lo siguiente:
 
+![image](https://github.com/LuisLopez-developer/minimarket-laravel/assets/156825396/615464a0-1c66-4ebd-9a27-eb590ebcdece)
+
 
 3. Instalar las dependencias del proyecto con npm
 
