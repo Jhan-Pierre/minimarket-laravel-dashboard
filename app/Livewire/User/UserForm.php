@@ -15,6 +15,10 @@ class UserForm extends Component
     #[Url(as: 's')]
     public $search = "";
 
+    public function updatingSearch(){
+        $this->resetPage();    
+    }
+
     public function render()
     {
         $users = User::orderby('created_at', 'desc')->when($this->search, function($query){

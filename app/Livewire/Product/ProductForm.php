@@ -40,6 +40,10 @@ class ProductForm extends Component
     #[Url(as: 's')]
     public $search = "";
 
+    public function updatingSearch(){
+        $this->resetPage();    
+    }
+
     public function mount(){
         $this->categories = DB::select('call sp_list_product_category()');
         $this->states = DB::select('call sp_list_product_statuses()');
