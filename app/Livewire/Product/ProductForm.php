@@ -5,6 +5,8 @@ namespace App\Livewire\Product;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
 class ProductForm extends Component
@@ -35,7 +37,8 @@ class ProductForm extends Component
 
     public $openDelete = false;
 
-    public $search;
+    #[Url(as: 's')]
+    public $search = "";
 
     public function mount(){
         $this->categories = DB::select('call sp_list_product_category()');
