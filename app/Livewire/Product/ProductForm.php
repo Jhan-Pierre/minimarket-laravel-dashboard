@@ -35,6 +35,8 @@ class ProductForm extends Component
 
     public $openDelete = false;
 
+    public $search;
+
     public function mount(){
         $this->categories = DB::select('call sp_list_product_category()');
         $this->states = DB::select('call sp_list_product_statuses()');
@@ -99,7 +101,9 @@ class ProductForm extends Component
 
     public function render()
     {
-         $products = Product::with('categoria', 'estado')->latest()->paginate(10);
+         $products = Product::orderby('created_at', 'desc')->when($this->search, function($query){
+            $query->where('name', 'like', '%' . $this->search.'%');
+         })->with('categoria', 'estado')->paginate(10);
 
         return view('livewire.product.product-form', compact('products'));
     }
