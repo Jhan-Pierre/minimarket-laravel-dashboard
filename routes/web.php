@@ -14,7 +14,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('admin.dashboard');
 
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->names('admin.product');
 });
