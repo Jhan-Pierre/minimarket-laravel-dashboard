@@ -17,7 +17,7 @@ Route::middleware([
         return view('dashboard');
     })->name('admin.dashboard');
 
-    Route::resource('users', UserController::class)->names('admin.users');
+    Route::resource('users', UserController::class)->only('index', 'edit', 'update')->names('admin.users');
 
     Route::resource('products', ProductController::class)->names('admin.product');
 });
