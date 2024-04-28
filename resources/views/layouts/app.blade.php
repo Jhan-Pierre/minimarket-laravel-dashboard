@@ -13,11 +13,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="{{ asset('js/alertify.min.js') }}"></script>
 
         <!-- Styles -->
         @livewireStyles
-        <link rel="stylesheet" href="{{ asset('css/alertify.min.css') }}">
 
 
     </head>
@@ -26,9 +24,6 @@
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @livewire('navigation-menu')
-
-            
-
             <!-- Page Content -->
             <main>
                 <div class="p-4 sm:ml-64">
@@ -48,8 +43,6 @@
             </main>
         </div>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-
         @stack('modals')
 
         @livewireScripts

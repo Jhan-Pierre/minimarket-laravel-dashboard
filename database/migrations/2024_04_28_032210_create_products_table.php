@@ -7,14 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('tb_categoria_producto', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre')->unique();
-            $table->string('descripcion');
-        });
-
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->unique();
@@ -26,22 +23,6 @@ return new class extends Migration
             $table->foreignId('state_id')->constrained('tb_estado');
             $table->timestamps();
         });
-
-        DB::table('tb_categoria_producto')->insert([
-            ['nombre' => 'Enlatados', 'descripcion' => 'Productos enlatados como conservas de frutas, verduras, pescados y otros.'],
-            ['nombre' => 'Frutas', 'descripcion' => 'Productos frescos como manzanas, bananas, y naranjas.'],
-            ['nombre' => 'Bebidas', 'descripcion' => 'Incluye agua embotellada, jugos, refrescos y bebidas energéticas.'],
-            ['nombre' => 'Snacks y golosinas', 'descripcion' => 'Productos como papas fritas, galletas, caramelos y chocolates.'],
-            ['nombre' => 'Productos de limpieza', 'descripcion' => 'Incluye detergentes, desinfectantes, y productos para la limpieza del hogar.'],
-            ['nombre' => 'Lácteos', 'descripcion' => 'Productos lácteos como leche, yogur, queso y mantequilla.'],
-            ['nombre' => 'Verduras', 'descripcion' => 'Productos frescos como zanahorias, lechuga, y tomates.'],
-            ['nombre' => 'Cervezas', 'descripcion' => 'Productos relacionados con la fabricación y venta de cervezas, tanto artesanales como comerciales.'],
-            ['nombre' => 'Cuidado personal', 'descripcion' => 'Productos como jabón, champú, pasta de dientes y papel higiénico.'],
-            ['nombre' => 'Helados', 'descripcion' => 'Productos relacionados con la fabricación y venta de helados, incluyendo diferentes sabores y presentaciones.'],
-            ['nombre' => 'Panadería', 'descripcion' => 'Productos horneados como pan blanco, pan integral y pastelería.'],
-            ['nombre' => 'Carnes y pescados', 'descripcion' => 'Incluye carne de res, pollo, pescado fresco y mariscos.'],
-            
-        ]);
 
         // Inserciones para tb_producto
         DB::table('products')->insert([
@@ -85,9 +66,11 @@ return new class extends Migration
 
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('tb_producto');
-        Schema::dropIfExists('tb_categoria_producto');
+        Schema::dropIfExists('products');
     }
 };

@@ -10,8 +10,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = DB::select('call sp_list_products()');
-        return view('products.index', compact('products'));
+        /* $products = DB::select('call sp_list_products()');
+        return view('products.index', compact('products')); */
+        return view('products.index');
         //alternativas a compact
         //return view('students.index')->with('students', $students);
         //return view('students.index', ['students' => $students]);

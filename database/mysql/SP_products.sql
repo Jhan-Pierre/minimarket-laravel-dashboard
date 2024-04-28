@@ -1,4 +1,4 @@
-use brwknyyxc7knxxgnb8li;
+use minimarket_laravel11;
 
 delimiter //
 create procedure sp_list_products()
@@ -26,7 +26,7 @@ begin
     select 
         p.id, 
         p.name, 
-        p.stock as stock, 
+        p.stock, 
         p.purchase_price, 
         p.sale_price,
         p.barcode,
@@ -43,3 +43,20 @@ begin
 end; //
 
 -- CALL sp_show_product_by_code('1');
+
+delimiter //
+create procedure sp_list_product_category()
+begin
+    select * from tb_categoria_producto;
+end; //
+
+-- CALL sp_list_product_category();
+
+
+delimiter //
+create procedure sp_list_product_statuses()
+begin
+	select * from tb_estado;
+end;
+
+-- CALL sp_list_product_statuses();
