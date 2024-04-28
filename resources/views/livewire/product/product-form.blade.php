@@ -76,7 +76,7 @@
     </div>
 
     <!-- table -->
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-8">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -142,18 +142,6 @@
 
     {{ $products->links() }}
 
-    <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
-        <!-- Aquí se muestra el número de elementos mostrados y el total de elementos -->
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Showing
-            <span class="font-semibold text-gray-900 dark:text-white">{{ $products->firstItem() }}-{{ $products->lastItem() }}</span>
-            of
-            <span class="font-semibold text-gray-900 dark:text-white">{{ $products->total() }}</span>
-        </span>
-    
-        <!-- Aquí se muestran los enlaces de paginación -->
-        {{ $products->links() }}
-    </nav>
 
     @if ($openCreate)
         <x-modal-edit-flow>
