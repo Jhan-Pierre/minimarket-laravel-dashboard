@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         /* $products = DB::select('call sp_list_products()');
         return view('products.index', compact('products')); */
-        return view('products.index');
+        return view('admin.products.index');
         //alternativas a compact
         //return view('students.index')->with('students', $students);
         //return view('students.index', ['students' => $students]);
@@ -20,12 +20,12 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        /* return view('products.create'); */
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        /* $request->validate([
             'name' => 'required|string|min:3|max:100',
             'barcode' => 'required|string|min:6|max:50',
             'purchase_price' => 'required|numeric',
@@ -37,7 +37,7 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index'); */
         
     }
 
@@ -48,13 +48,13 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
-        $product = Product::findorfail($id);
-        return view('products.edit', compact('product'));
+        /* $product = Product::findorfail($id);
+        return view('products.edit', compact('product')); */
     }
 
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        /* $request->validate([
             'name' => 'required|string|min:3|max:100',
             'barcode' => 'required|string|min:6|max:50',
             'purchase_price' => 'required|numeric',
@@ -62,28 +62,20 @@ class ProductController extends Controller
             'stock' => 'required|integer',      
             'category_id' => 'required|integer',
             'state_id' => 'required|integer'
-        ]);
+        ]); */
 
-        $product = Product::FindOrFail($id);
-
-        $product->update($request->all());
-
-        return redirect()->route('products.index');
     }
 
     public function destroy(int $id)
     {
-        $product = Product::findorfail($id);
-        $product->delete();
-
-        return redirect()->route('products.index');
+;
     }
 
-    // Store procedures
+    /* // Store procedures
     public function sp_list_products(){
         $product = DB::select('call sp_list_products()');
 
         return view('products.index', compact('product'));
-    }
+    } */
 
 }

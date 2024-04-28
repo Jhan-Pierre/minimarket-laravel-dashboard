@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('admin.dashboard');
+
+    Route::resource('users', UserController::class)->names('admin.users');
 
     Route::resource('products', ProductController::class)->names('admin.product');
 });
