@@ -12,6 +12,9 @@
         case 'warning':
             $clases = "text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800";
             break;
+        case 'success':
+            $clases = "text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400";
+            break;
         default:
             $clases = "text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800";
             break;
