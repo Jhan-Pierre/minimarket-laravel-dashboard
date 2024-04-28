@@ -18,5 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@minimarketlaravel.io',
             'password' => bcrypt('123456'),
         ])->assignRole('Admin');
+
+        User::factory(15)->create();
     }
 }
