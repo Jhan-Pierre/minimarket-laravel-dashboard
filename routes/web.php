@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,6 @@ Route::middleware([
     Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'create', 'store', 'delete', 'destroy')->middleware('can:admin.users.index')->names('admin.users');
 
     Route::resource('products', ProductController::class)->names('admin.product');
+
+    Route::resource('categories', CategoryController::class)->names('admin.category');
 });
