@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('tb_categoria_producto', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
+            $table->timestamps();
         });
 
         DB::table('tb_categoria_producto')->insert([

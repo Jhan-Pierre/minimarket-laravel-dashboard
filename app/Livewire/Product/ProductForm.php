@@ -5,7 +5,6 @@ namespace App\Livewire\Product;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
