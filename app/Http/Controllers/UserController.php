@@ -28,4 +28,12 @@ class UserController extends Controller
         return redirect()->route('admin.users.edit', $user)->with('info', 'Roles asignados con éxito');
     }
     
+    public function create(){
+        return view("admin.users.create");
+    }
+
+    public function store(Request $request, User $user){
+
+    }
+
 }

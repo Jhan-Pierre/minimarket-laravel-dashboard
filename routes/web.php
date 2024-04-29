@@ -17,7 +17,7 @@ Route::middleware([
         return view('dashboard');
     })->name('admin.dashboard');
 
-    Route::resource('users', UserController::class)->only('index', 'edit', 'update')->middleware('can:admin.users.index')->names('admin.users');
+    Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'create', 'store')->middleware('can:admin.users.index')->names('admin.users');
 
     Route::resource('products', ProductController::class)->names('admin.product');
 });
