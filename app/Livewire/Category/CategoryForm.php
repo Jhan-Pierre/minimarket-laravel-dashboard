@@ -75,4 +75,21 @@ class CategoryForm extends Component
 
         return view('livewire.category.category-form', compact('categories'));
     }
+
+    public function delete($categoryId, $categoryName)
+    {
+        $this->openDelete = true;
+
+        $this->categoryDeleteId = $categoryId;
+        $this->categoryDeleteName = $categoryName;
+    }
+
+    public function destroy()
+    {
+        $category = CategoryProduct::find($this->categoryDeleteId);
+        $category->delete();
+
+        $this->reset(['categoriesEdit', 'categoryDeleteId', 'openDelete']);
+    }
+
 }
