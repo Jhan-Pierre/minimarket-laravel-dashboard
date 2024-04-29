@@ -12,11 +12,36 @@ class CategoryForm extends Component
 {
     use WithPagination;
 
+    public $nombre;
+
+    public $categoriesEdit = [
+        'nombre' => '',
+    ];
+
+    public $openCreate = false;
+
+    public $categoryEditId = '';
+ 
+    public $openEdit = false;
+
+    public $categoryDeleteId = "", $categoryDeleteName = "";
+
+    public $openDelete = false;
+
     #[Url(as: 's')]
     public $search = "";
 
     public function updatingSearch(){
         $this->resetPage();    
+    }
+
+    public function save(){
+        CategoryProduct::create(
+            $this->only('nombre')
+        );
+
+        $this->reset(['nombre', 'openCreate']);
+
     }
 
     public function render()
