@@ -24,9 +24,23 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed', // Cambiado a nullable
+            'roles' => 'array',
+            'roles.*' => 'exists:roles,id'
+        ]);
+    
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        if ($request->filled('password')) { // Verifica si se proporciona una nueva contraseña
+            $user->password = Hash::make($validatedData['password']); // Usa Hash::make() para hashear la nueva contraseña
+        }
+        $user->save();
         $user->roles()->sync($request->roles);
 
-        return redirect()->route('admin.users.edit', $user)->with('info', 'Roles asignados con éxito');
+        return redirect()->route('admin.users.index', $user)->with('info', 'Usuario actualizado con éxito');
     }
     
     public function create(){
