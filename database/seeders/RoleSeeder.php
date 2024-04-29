@@ -9,9 +9,6 @@ use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $role1 = Role::create(['name' => 'Admin']);
@@ -24,7 +21,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.product.edit'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.product.delete'])->assignRole($role1);
 
-
+        Permission::create(['name' => 'admin.users.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.edit'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.update'])->syncRoles([$role1]);
 
     }
 }
