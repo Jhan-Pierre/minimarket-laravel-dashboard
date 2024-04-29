@@ -64,7 +64,7 @@ composer install
 ```bash
 php artisan key:generate
 
-php artisan migrate
+php artisan migrate --seed
 ```
 
 6. Para cargar los asset para js y css:
