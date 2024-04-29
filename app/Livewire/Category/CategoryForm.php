@@ -44,6 +44,27 @@ class CategoryForm extends Component
 
     }
 
+    public function edit($categoryId)
+    {
+        $this->openEdit = true;
+
+        $this->categoryEditId = $categoryId;
+
+        $category = CategoryProduct::find($categoryId);
+        $this->categoriesEdit['nombre'] = $category->nombre;
+    }
+
+    public function update()
+    {
+        $category = CategoryProduct::find($this->categoryEditId);
+
+        $category->update([
+            'nombre' => $this->categoriesEdit['nombre'],
+        ]);
+
+        $this->reset(['categoryEditId', 'openEdit']);
+    }
+
     public function render()
     {
         $categories = CategoryProduct::orderBy('created_at', 'desc')
