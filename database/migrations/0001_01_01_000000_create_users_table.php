@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -34,6 +35,24 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        DB::table('users')->insert([
+            'name' => 'Juan Perez',
+            'email' => 'juan@example.com',
+            'password' => bcrypt('password1'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'María García',
+            'email' => 'maria@example.com',
+            'password' => bcrypt('password2'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+
     }
 
     public function down(): void
