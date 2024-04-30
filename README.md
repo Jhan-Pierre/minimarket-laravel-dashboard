@@ -71,7 +71,7 @@ php artisan migrate --seed
 > Eliminar las tablas: model_has_permissions, model_has_roles, permissions, roles y role_has_permissions
 > Luego, limpia la cache:
 >```bash
-> npm install
+> php artisan config:cache
 >```
 >Finalmente, realiza nuevamente la migración.
 >
