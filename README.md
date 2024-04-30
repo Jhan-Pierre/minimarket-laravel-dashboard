@@ -66,6 +66,16 @@ php artisan key:generate
 
 php artisan migrate --seed
 ```
+> [!WARNING]  
+> Si te sale este error:
+> Eliminar las tablas: model_has_permissions, model_has_roles, permissions, roles y role_has_permissions
+> Luego, limpia la cache:
+>```bash
+> npm install
+>```
+>Finalmente, realiza nuevamente la migración.
+>
+> ![image](https://github.com/LuisLopez-developer/minimarket-laravel/assets/156825396/6dd7da9f-7a4e-48dc-b480-26262ad7a472)
 
 6. Para cargar los asset para js y css:
 
