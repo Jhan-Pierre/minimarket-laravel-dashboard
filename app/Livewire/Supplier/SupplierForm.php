@@ -32,10 +32,6 @@ class SupplierForm extends Component
     #[Url(as: 's')]
     public $search = "";
 
-    public function updatingSearch(){
-        $this->resetPage();    
-    }
-
     public function mount(){
         $this->states = State::all();
     }
@@ -57,6 +53,12 @@ class SupplierForm extends Component
 
         $suppliers = Supplier::find($suppliersId);
         $this->suppliersEdit['name'] = $suppliers->name;
+        $this->suppliersEdit['ruc'] = $suppliers->ruc;
+        $this->suppliersEdit['descripcion'] = $suppliers->descripcion;
+        $this->suppliersEdit['telefono'] = $suppliers->telefono;
+        $this->suppliersEdit['correo'] = $suppliers->correo;
+        $this->suppliersEdit['direccion'] = $suppliers->direccion;
+        $this->suppliersEdit['estado_id'] = $suppliers->estado_id;
     }
 
     public function update()
@@ -65,6 +67,12 @@ class SupplierForm extends Component
 
         $suppliers->update([
             'name' => $this->suppliersEdit['name'],
+            'ruc' => $this->suppliersEdit['ruc'],
+            'descripcion' => $this->suppliersEdit['descripcion'],
+            'telefono' => $this->suppliersEdit['telefono'],
+            'correo' => $this->suppliersEdit['correo'],
+            'direccion' => $this->suppliersEdit['direccion'],
+            'estado_id' => $this->suppliersEdit['estado_id'],
         ]);
 
         $this->reset(['suppliersEditId', 'openEdit']);

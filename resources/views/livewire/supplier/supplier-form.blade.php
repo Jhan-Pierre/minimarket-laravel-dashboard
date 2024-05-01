@@ -26,7 +26,7 @@
             @endcan     
         </div>       
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg pb-4">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -147,5 +147,92 @@
             </form>
         </x-modal-edit-flow>
     @endif
-    
+    @if ($openEdit)
+        <x-modal-edit-flow>
+            <x-slot name="header">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Editar Proveedor
+                </h3>
+                <button wire:click="$set('openEdit', false)" data-modal-toggle="2" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </x-slot>
+
+            <form wire:submit="update">
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div>
+                        <x-label-flow>Nombre</x-label-flow>
+                        <x-input-flow type="text" name="name" wire:model="suppliersEdit.name" required/>
+                    </div>
+                    <div>
+                        <x-label-flow>Ruc</x-label-flow>
+                        <x-input-flow type="text" name="ruc" wire:model="suppliersEdit.ruc" required/>
+                    </div>
+                </div>
+
+                <div class="grid gap-4 mb-4 sm:grid-cols-1">
+                    <div>
+                        <x-label-flow>Descripcion</x-label-flow>
+                        <x-input-flow type="text" name="descripcion" wire:model="suppliersEdit.descripcion" required/>
+                    </div>
+                </div>
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div>
+                        <x-label-flow>Telefono</x-label-flow>
+                        <x-input-flow type="text" name="telefono" wire:model="suppliersEdit.telefono" required/>
+                    </div>
+                    <div>
+                        <x-label-flow>Correo</x-label-flow>
+                        <x-input-flow type="text" name="correo" wire:model="suppliersEdit.correo" required/>
+                    </div>             
+                </div>
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div>
+                        <x-label-flow>Direccion</x-label-flow>
+                        <x-input-flow type="text" name="direccion" wire:model="suppliersEdit.direccion" required/>
+                    </div>
+                    <div>
+                        <x-label-flow>Estados</x-label-flow>
+                        <x-select-flow wire:model="suppliersEdit.estado_id">
+                            <option selected="">Selecione una opcion</option>
+                            @foreach ($states as $state)
+                                <option value="{{ $state->id }}">{{ $state->nombre }}</option>
+                            @endforeach
+                        </x-select-flow>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Actualizar
+                    </button>
+                    <button type="button" wire:click="$set('openEdit', false)" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </x-modal-edit-flow>
+    @endif
+    @if ($openDelete)
+        <x-modal-delete-flow maxWidth="lg">
+            <x-slot  name="header">
+                <button type="button" wire:click="$set('openDelete', false)" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Cerrar modal</span>
+                </button>
+                <svg class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg> 
+            </x-slot>
+
+            <p class="mb-4 text-gray-500 dark:text-gray-300">¿Deseas eliminar el producto "{{ $suppliersDeleteName }}" con ID "{{ $suppliersDeleteId }}"? </p>
+
+            <x-slot  name="footer">
+                <button wire:click="$set('openDelete', false)" data-modal-toggle="deleteModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                    No, cancelar
+                </button>
+                <button wire:click="destroy" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    Si, estoy seguro
+                </button>
+            </x-slot>
+        </x-modal-delete-flow>    
+    @endif
 </div>
