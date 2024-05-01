@@ -64,8 +64,8 @@
                         <td class="px-6 py-3">{{ $sale->users->name }}</td>
                         <td class="px-6 py-3">{{ $sale->tipocomprobante->comprobante }}</td>
                         <td class="px-6 py-3">{{ $sale->metodoPago->metodo_pago }}</td>
-                        <td class="px-6 py-3">{{ $sale->total }}</td>
-                        <td class="px-6 py-3">{{ $sale->impuesto }}</td>
+                        <td class="px-6 py-3">{{ $sale->impuesto }}%</td>
+                        <td class="px-6 py-3">S/.{{ $sale->total }}</td>
                         <td class="px-6 py-3">{{ $sale->created_at }}</td>
 
                         <td class="px-6 py-3 flex items-center justify-end">
