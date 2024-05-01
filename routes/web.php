@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,7 @@ Route::middleware([
     Route::resource('orders', OrderController::class)->names('admin.order');
 
     Route::resource('supports', SupportController::class)->names('admin.support');
+
+    Route::resource('sales', SaleController::class)->names('admin.sale');
+
 });
