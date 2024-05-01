@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-8 px-4 lg:py-16">
+    <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -9,7 +9,7 @@
                 </ul>
             </div>
         @endif
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Agregar un usuario</h2>
+        <h2 class="my-4 text-xl font-bold text-gray-900 dark:text-white">Agregar un usuario</h2>
         <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">

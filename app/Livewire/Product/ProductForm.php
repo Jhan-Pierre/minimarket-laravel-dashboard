@@ -6,7 +6,6 @@ use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\State;
 use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
@@ -48,7 +47,6 @@ class ProductForm extends Component
     public function mount(){
         $this->categories = CategoryProduct::all();
         $this->states = State::all();
-
     }
 
     public function save(){
