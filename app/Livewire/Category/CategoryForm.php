@@ -70,8 +70,7 @@ class CategoryForm extends Component
         $categories = CategoryProduct::orderBy('created_at', 'desc')
             ->when($this->search, function ($query) {
                 $query->where('nombre', 'like', '%' . $this->search . '%');
-            })
-            ->paginate(10);
+            })->paginate(10);
 
         return view('livewire.category.category-form', compact('categories'));
     }
