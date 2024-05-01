@@ -15,7 +15,6 @@ class SaleForm extends Component
     public $saleDeleteId = "";
     public $saleDeleteDate = "";
 
-
     #[Url(as: 's')]
     public $search = "";
 

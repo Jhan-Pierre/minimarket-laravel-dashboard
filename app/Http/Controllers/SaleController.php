@@ -17,11 +17,8 @@ class SaleController extends Controller
 
     public function create(){
         
-        $users = User::all();
-        $paymmentMethods = PaymentMethod::all();
-        $voucherTypes = VoucherType::all(); 
-
-        return view("admin.sale.create", compact('users', 'paymmentMethods', 'voucherTypes'));
+        
+        return view("admin.sale.create");
     } 
     // ****************************************************************
     //esta es la forma para reeplazar el mount de los livewire

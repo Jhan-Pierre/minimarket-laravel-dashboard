@@ -1,7 +1,7 @@
 <div>
     <div class="flex">
         <div class="flex-grow">
-            <input wire:model="codbarras" type="text" name="codbarras" id="codbarras" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nombre" required="">
+            <input wire:model="codbarras" type="text" name="codbarras" id="codbarras" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Codigo de barras" required="">
         </div>
         <div class="flex-grow-8">
             <x-button-flow wire:click="store({{ Auth::user()->id }})" >Agregar</x-button-flow>
@@ -39,7 +39,7 @@
                         <td class="px-6 py-3">{{ $basket->product_id }}</td>
                         <td class="px-6 py-3">{{ $basket->precio_unitario }}</td>
                         <td class="px-6 py-3">{{ $basket->cantidad }}</td>
-                        <td class="px-6 py-3">{{ $basket->precio_unitario }}</td>
+                        <td class="px-6 py-3">{{ $basket->subtotal }}</td>
                     </tr>
                 @endforeach
 

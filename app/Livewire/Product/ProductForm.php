@@ -5,6 +5,7 @@ namespace App\Livewire\Product;
 use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\State;
+
 use Livewire\Component;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
