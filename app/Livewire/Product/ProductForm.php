@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Product;
 
+use App\Models\CategoryProduct;
 use App\Models\Product;
+use App\Models\State;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
@@ -12,7 +14,7 @@ class ProductForm extends Component
 {
     use WithPagination;
 
-    public $categories, $states;
+    public $categories = [], $states = [];
 
     public $name, $barcode, $purchase_price, $sale_price, $stock, $category_id, $state_id;
 
@@ -44,8 +46,8 @@ class ProductForm extends Component
     }
 
     public function mount(){
-        $this->categories = DB::select('call sp_list_product_category()');
-        $this->states = DB::select('call sp_list_product_statuses()');
+        $this->categories = CategoryProduct::all();
+        $this->states = State::all();
 
     }
 
