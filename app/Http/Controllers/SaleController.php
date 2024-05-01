@@ -7,6 +7,7 @@ use App\Models\Sale;
 use App\Models\User;
 use App\Models\VoucherType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -23,29 +24,23 @@ class SaleController extends Controller
     // ****************************************************************
     //esta es la forma para reeplazar el mount de los livewire
     // ****************************************************************
+    public function store(Request $request)
+    {
+        $userId = auth()->id(); 
 
-    
-    public function store(Request $request, Sale $user){
+        $total = $request->total;
+        $igv = $request->igv;
+        $metodo_pago_id = $request->metodo_pago_id;
+        $tipo_comprobante_id = $request->tipo_comprobante_id;
 
-        /* $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed', // Añade la regla 'confirmed'
-            'roles' => 'array',
-            'roles.*' => 'exists:roles,id'
-        ]); */
-    
-        /* $user = new Sale();
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email']; */
+        DB::statement('CALL sp_registrar_venta(?, ?, ?, ?, ?)', [
+            $igv, 
+            $total, 
+            $tipo_comprobante_id, 
+            $metodo_pago_id, 
+            $userId
+        ]);
 
-        $user->save();
-
-        if ($request->has('roles')) {
-            $user->roles()->attach($request->input('roles'));
-        }
-
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.sale.index');
     }
-
 }
