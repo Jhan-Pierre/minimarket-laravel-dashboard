@@ -36,7 +36,7 @@
                 @foreach ($baskets as $basket)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" wire:key="{{ $basket->id }}-product">
                         <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $basket->id }}</th>
-                        <td class="px-6 py-3">{{ $basket->product_id }}</td>
+                        <td class="px-6 py-3">{{ $basket->product->name }}</td>
                         <td class="px-6 py-3">{{ $basket->precio_unitario }}</td>
                         <td class="px-6 py-3">{{ $basket->cantidad }}</td>
                         <td class="px-6 py-3">{{ $basket->subtotal }}</td>
