@@ -4,20 +4,37 @@ namespace App\Livewire\Sale;
 
 use App\Models\Sale;
 use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
 class SaleForm extends Component
 {
-
     use WithPagination;
+
+    public $openDelete = false;
+    public $saleDeleteId = "";
+    public $saleDeleteDate = "";
+
 
     #[Url(as: 's')]
     public $search = "";
 
     public function updatingSearch(){
         $this->resetPage();    
+    }
+
+    public function delete($userId, $saleDeleteDate)
+    {
+        $this->openDelete = true;
+        $this->saleDeleteId = $userId;
+        $this->saleDeleteDate = $saleDeleteDate;
+    }
+
+    public function destroy()
+    {
+        Sale::destroy($this->saleDeleteId);
+        $this->openDelete = false;
+        $this->reset(['saleDeleteId','saleDeleteDate', 'openDelete']);
     }
 
     public function render()
