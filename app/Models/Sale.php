@@ -24,4 +24,18 @@ class Sale extends Model
     public function users(){
         return $this->belongsTo(User::class, 'users_id');
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($sale) {
+            // Antes de eliminar la venta, elimina todos los detalles de venta asociados
+            $sale->detalleVenta()->delete();
+        });
+    }
+
+    // Relación con DetalleVenta
+    public function detalleVenta()
+    {
+        return $this->hasMany(SaleDetail::class, 'sale_id');
+    }
 }
