@@ -6,7 +6,6 @@ use App\Models\TemporaryBasket;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Modelable;
-use Livewire\Attributes\Reactive;
 
 class BasketForm extends Component
 {
@@ -28,6 +27,13 @@ class BasketForm extends Component
              ->where('product_id', $productId)
              ->delete();
     }
+
+    public function clearBasket()
+    {
+        $userId = auth()->id();
+        TemporaryBasket::where('user_id', $userId)->delete();
+    }
+
 
     public function render()
     {

@@ -20,9 +20,6 @@
         <table class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <th scope="col" class="px-6 py-3">
-                    ID
-                </th>
-                <th scope="col" class="px-6 py-3">
                     Producto
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -69,6 +66,18 @@
             </tbody>
         </table>
     </div>
+
+    @if($baskets->isNotEmpty())
+        <div class="relative sm:rounded-lg">
+            <div class="flex flex-col items-center p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+                <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
+                    <button wire:click="clearBasket()" class="flex items-center justify-center p-4 text-sm font-medium text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                        Limpiar Cesta
+                    </button>
+                </div>  
+            </div>
+        </div>
+    @endif
 
 </div>
 
