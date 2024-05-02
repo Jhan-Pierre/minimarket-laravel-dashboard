@@ -3,10 +3,12 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SaleController;
-use App\Http\Controllers\SupportController;
+use App\Mail\ContactMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +35,9 @@ Route::middleware([
     Route::resource('supports', SupportController::class)->names('admin.support');
 
     Route::resource('suppliers', SupplierController::class)->names('admin.supplier');
+
     Route::resource('sales', SaleController::class)->names('admin.sale');
+
+    Route::resource('contact', ContactController::class)->names('admin.contact');
 
 });
