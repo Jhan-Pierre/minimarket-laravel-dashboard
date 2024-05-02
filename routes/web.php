@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SaleController;
 use App\Mail\ContactMailable;
 use Illuminate\Support\Facades\Mail;
@@ -30,6 +31,10 @@ Route::middleware([
     Route::resource('categories', CategoryController::class)->names('admin.category');
 
     Route::resource('orders', OrderController::class)->names('admin.order');
+
+    Route::resource('supports', SupportController::class)->names('admin.support');
+
+    Route::resource('suppliers', SupplierController::class)->names('admin.supplier');
 
     Route::resource('sales', SaleController::class)->names('admin.sale');
 
