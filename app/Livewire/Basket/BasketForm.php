@@ -20,6 +20,15 @@ class BasketForm extends Component
         $this->codbarras = "";
     }
 
+    public function delete($productId)
+    {
+         $userId = auth()->id();
+
+         TemporaryBasket::where('user_id', $userId)
+             ->where('product_id', $productId)
+             ->delete();
+    }
+
     public function render()
     {
         $userId = auth()->id(); // Obtener el ID del usuario autenticado

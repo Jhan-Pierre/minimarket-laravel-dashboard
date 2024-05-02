@@ -41,8 +41,7 @@
             <tbody>         
                 @foreach ($baskets as $basket)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" wire:key="{{ $basket->id }}-product">
-                        <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $basket->id }}</th>
-                        <td class="px-6 py-3">{{ $basket->product->name }}</td>
+                        <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $basket->product->name }}</th>
                         <td class="px-6 py-3">{{ $basket->precio_unitario }}</td>
                         <td class="px-6 py-3">
                             <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
@@ -59,7 +58,7 @@
                         </td>
                         <td class="px-6 py-3">{{ $basket->subtotal }}</td>
                         <td class="px-6 py-3 flex items-center justify-end">
-                            <a wire:click="delete({{ $basket->id }}, '{{ $basket->created_at }}')" class="rounded-lg block py-2 px-4 text-sm text-gray-700 hover:bg-red-400 dark:hover:bg-red-600 dark:text-gray-200 dark:hover:text-white">
+                            <a wire:click="delete({{ $basket->product_id }})"  class="rounded-lg block py-2 px-4 text-sm text-gray-700 hover:bg-red-400 dark:hover:bg-red-600 dark:text-gray-200 dark:hover:text-white">
                                 <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                 </svg>
