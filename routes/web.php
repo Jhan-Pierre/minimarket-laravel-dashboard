@@ -32,8 +32,6 @@ Route::middleware([
 
     Route::resource('orders', OrderController::class)->names('admin.order');
 
-    Route::resource('supports', SupportController::class)->names('admin.support');
-
     Route::resource('suppliers', SupplierController::class)->names('admin.supplier');
 
     Route::resource('sales', SaleController::class)->names('admin.sale');
