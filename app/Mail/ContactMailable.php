@@ -14,16 +14,18 @@ class ContactMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('info@teamstarteight.work', 'Luis Lopez'),
-            subject: 'Mensaje de confirmación',
+            from: new Address('info@teamstarteight.com', 'Luis Lopez'),
+            subject: $this->data['subject']
         );
     }
 
@@ -31,11 +33,13 @@ class ContactMailable extends Mailable
     {
         return new Content(
             view: 'emails.contact',
+            with: ['data' => $this->data]
         );
     }
 
     public function attachments(): array
     {
+        // Aquí puedes añadir archivos adjuntos si es necesario
         return [];
     }
 }
