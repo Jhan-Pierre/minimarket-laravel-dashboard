@@ -9,7 +9,7 @@ use App\Models\PaymentMethod;
 class SaleCreateForm extends Component
 {
 
-    public $total = 0.0;
+    public $total;
 
     public function render()
     {
