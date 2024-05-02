@@ -3,9 +3,9 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaleController;
-use App\Http\Controllers\SupportController;
 use App\Mail\ContactMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -31,14 +31,8 @@ Route::middleware([
 
     Route::resource('orders', OrderController::class)->names('admin.order');
 
-    Route::resource('supports', SupportController::class)->names('admin.support');
-
     Route::resource('sales', SaleController::class)->names('admin.sale');
 
-    Route::get('contact', function(){
-        Mail::to('luislopezhuari27@gmail.com')->send(new ContactMailable);
-
-        return 'mensaje enviado';
-    })->name('admin.contact');
+    Route::resource('contact', ContactController::class)->names('admin.contact');
 
 });
