@@ -35,6 +35,31 @@ class BasketForm extends Component
     }
 
 
+    public function incrementQuantity($productId)
+{
+    $basket = TemporaryBasket::where('user_id', auth()->id())
+        ->where('product_id', $productId)
+        ->firstOrFail();
+
+    $basket->cantidad++;
+    $basket->subtotal = $basket->precio_unitario * $basket->cantidad;
+    $basket->save();
+}
+
+public function decrementQuantity($productId)
+{
+    $basket = TemporaryBasket::where('user_id', auth()->id())
+        ->where('product_id', $productId)
+        ->firstOrFail();
+
+    if ($basket->cantidad > 1) {
+        $basket->cantidad--;
+        $basket->subtotal = $basket->precio_unitario * $basket->cantidad;
+        $basket->save();
+    }
+}
+
+
     public function render()
     {
         $userId = auth()->id(); // Obtener el ID del usuario autenticado
