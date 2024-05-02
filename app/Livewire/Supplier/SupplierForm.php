@@ -17,6 +17,12 @@ class SupplierForm extends Component
 
     public $suppliersEdit = [
         'name' => '',
+        'ruc' => '',
+        'descripcion' => '',
+        'telefono' => '',
+        'correo' => '',
+        'direccion' => '',
+        'estado_id' => '',
     ];
 
     public $openCreate = false;
@@ -42,8 +48,9 @@ class SupplierForm extends Component
         );
 
         $this->reset(['name', 'ruc', 'descripcion', 'telefono', 'correo', 'direccion', 'estado_id', 'openCreate']);
-
     }
+
+
 
     public function edit($suppliersId)
     {

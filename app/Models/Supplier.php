@@ -15,4 +15,9 @@ class Supplier extends Model
     {
         return $this->belongsTo(State::class, 'estado_id');
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'tb_producto_proveedor', 'proveedor_id', 'producto_id');
+    }
 }
