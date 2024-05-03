@@ -6,17 +6,17 @@ use App\Models\Product;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class ProductCreateForm extends Form
+class ProductEditForm extends Form
 {
-    public $openCreate = false;
+    public $open = false;
 
-    public $name, $barcode, $purchase_price, $sale_price, $stock, $category_id, $state_id;
+    public $id = "", $name, $barcode, $purchase_price, $sale_price, $stock, $category_id, $state_id;
 
     public function rules() 
     {
         return [
             'name' => 'required|min:3|max:100',
-            'barcode' => 'required|min:3|max:100|unique:products,barcode',
+            'barcode' => 'required|min:3|max:100|unique:products,barcode,' . $this->id,
             'purchase_price' => 'required|numeric|min:0.01',
             'sale_price' => 'required|numeric|min:0|gte:purchase_price',
             'stock' => 'required|integer|min:0',
@@ -52,19 +52,32 @@ class ProductCreateForm extends Form
         ];
     }
 
-    public function close(){
-        $this->resetErrorBag();
-        $this->resetValidation();
-        $this->reset();
+    public function edit($id){
+
+        $this->id = $id;
+
+        $this->open = true;
+
+        $product =  Product::find($this->id);
+
+        $this->name = $product->name;
+        $this->barcode = $product->barcode;
+        $this->purchase_price = $product->purchase_price;
+        $this->sale_price = $product->sale_price;
+        $this->stock = $product->stock;
+        $this->category_id = $product->category_id;
+        $this->state_id = $product->state_id;
     }
 
-    public function save(){    
+    public function update(){
         $this->validate();
 
-        Product::create(
+        $product = Product::find($this->id);
+
+        $product->update(
             $this->only('name', 'barcode', 'purchase_price', 'sale_price', 'stock', 'category_id', 'state_id')
         );
-    
+
         $this->reset();
     }
 

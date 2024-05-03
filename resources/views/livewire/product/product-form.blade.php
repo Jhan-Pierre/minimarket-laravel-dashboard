@@ -106,7 +106,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                     Crear Producto
                 </h3>
-                <button wire:click="$set('productCreate.openCreate', false)" data-modal-toggle="2" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <button wire:click="closeCreate" data-modal-toggle="2" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -170,7 +170,7 @@
                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Crear
                     </button>
-                    <button type="button" wire:click="$set('productCreate.openCreate', false)" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" wire:click="closeCreate" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Cancelar
                     </button>
                 </div>
@@ -178,13 +178,13 @@
         </x-modal-edit-flow>
     @endif
 
-    @if ($openEdit)
+    @if ($productEdit->open)
         <x-modal-edit-flow>
             <x-slot name="header">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                     Editar Producto
                 </h3>
-                <button wire:click="$set('openEdit', false)" data-modal-toggle="2" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <button wire:click="$set('productEdit.open', false)" data-modal-toggle="2" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -194,54 +194,61 @@
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <x-label-flow>Nombre</x-label-flow>
-                        <x-input-flow type="text" name="name" wire:model="productsEdit.name" required/>
+                        <x-input-flow type="text" name="name" wire:model="productEdit.name"/>
+                        <x-input-error-flow for='productEdit.name'/>
                     </div>
                     <div>
                         <x-label-flow>Codigo de Barras</x-label-flow>
-                        <x-input-flow type="text" name="barcode" wire:model="productsEdit.barcode" required/>
+                        <x-input-flow type="text" name="barcode" wire:model="productEdit.barcode"/>
+                        <x-input-error-flow for='productEdit.barcode'/>
                     </div>
                 </div>
 
                 <div class="grid gap-4 mb-4 sm:grid-cols-3">
                     <div>
                         <x-label-flow>Precio Compra</x-label-flow>
-                        <x-input-flow type="number" name="purchase_price" wire:model="productsEdit.purchase_price"  step="0.01" required/>
+                        <x-input-flow type="number" name="purchase_price" wire:model="productEdit.purchase_price"  step="0.01"/>
+                        <x-input-error-flow for='productEdit.purchase_price'/>
                     </div>
                     <div>
                         <x-label-flow>Precio Venta</x-label-flow>
-                        <x-input-flow type="number" name="sale_price" wire:model="productsEdit.sale_price"  step="0.01" required/>
+                        <x-input-flow type="number" name="sale_price" wire:model="productEdit.sale_price"  step="0.01"/>
+                        <x-input-error-flow for='productEdit.sale_price'/>
                     </div>
                     <div>
                         <x-label-flow>Stock</x-label-flow>
-                        <x-input-flow type="number" name="stock" wire:model="productsEdit.stock" required/>
+                        <x-input-flow type="number" name="stock" wire:model="productEdit.stock" />
+                        <x-input-error-flow for='productEdit.stock'/>
                     </div>
                 </div>
             
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <x-label-flow>Categorias</x-label-flow>
-                        <x-select-flow  wire:model="productsEdit.category_id">
+                        <x-select-flow  wire:model="productEdit.category_id">
                             <option selected="">Selecione una categoria</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->nombre }}</option>
                             @endforeach
                         </x-select-flow>
-                    </div>
+                        <x-input-error-flow for='productEdit.category_id'/>
+                    </div>  
                     <div>
                         <x-label-flow>Estados</x-label-flow>
-                        <x-select-flow wire:model="productsEdit.state_id">
+                        <x-select-flow wire:model="productEdit.state_id">
                             <option selected="">Selecione una opcion</option>
                             @foreach ($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->nombre }}</option>
                             @endforeach
                         </x-select-flow>
+                        <x-input-error-flow for='productEdit.state_id'/>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Actualizar
                     </button>
-                    <button type="button" wire:click="$set('openEdit', false)" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" wire:click="$set('productEdit.open', false)" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Cancelar
                     </button>
                 </div>

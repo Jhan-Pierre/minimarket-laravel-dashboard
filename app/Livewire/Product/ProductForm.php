@@ -3,6 +3,7 @@
 namespace App\Livewire\Product;
 
 use App\Livewire\Forms\Product\ProductCreateForm;
+use App\Livewire\Forms\Product\ProductEditForm;
 use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\State;
@@ -18,20 +19,8 @@ class ProductForm extends Component
     public $categories = [], $states = [];
 
     public ProductCreateForm $productCreate;
-
-    public $productsEdit = [
-        'name' => '',
-        'barcode' => '',
-        'purchase_price' => '',
-        'sale_price' => '',
-        'stock' => '',
-        'category_id' => '',
-        'state_id' => '',
-    ];
-
-    public $productEditId = '';
  
-    public $openEdit = false;
+    public ProductEditForm $productEdit;
 
     public $productDeleteId = "", $productDeleteName = "";
 
@@ -49,39 +38,21 @@ class ProductForm extends Component
         $this->states = State::all();
     }
 
+    public function closeCreate(){
+        $this->productCreate->close();
+    }
+
     public function save(){
         $this->productCreate->save();
     }
 
     public function edit($productid){
-        $this->openEdit = true;
-
-        $this->productEditId = $productid;
-
-        $product = Product::find($productid);
-        $this->productsEdit['name'] = $product->name;
-        $this->productsEdit['barcode'] = $product->barcode;
-        $this->productsEdit['purchase_price'] = $product->purchase_price;
-        $this->productsEdit['sale_price'] = $product->sale_price;
-        $this->productsEdit['stock'] = $product->stock;
-        $this->productsEdit['category_id'] = $product->category_id;
-        $this->productsEdit['state_id'] = $product->state_id;
+        $this->resetValidation();
+        $this->productEdit->edit($productid);
     }
 
     public function update(){
-        $product = Product::find($this->productEditId);
-
-        $product->update([
-            'name' => $this->productsEdit['name'],
-            'barcode' => $this->productsEdit['barcode'],
-            'purchase_price' => $this->productsEdit['purchase_price'],
-            'sale_price' => $this->productsEdit['sale_price'],
-            'stock' => $this->productsEdit['stock'],
-            'category_id' => $this->productsEdit['category_id'],
-            'state_id' => $this->productsEdit['state_id']
-        ]);
-
-        $this->reset(['productDeleteName', 'productEditId', 'openEdit']);
+        $this->productEdit->update();
     }
     
     public function delete($productid, $productname){
