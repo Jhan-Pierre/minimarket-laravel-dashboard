@@ -88,7 +88,7 @@
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <x-label-flow for="categoriesCreate.nombre">Nombre</x-label-flow>
-                        <x-input-flow type="text" wire:model="categoriesCreate.nombre"/>
+                        <x-input-flow type="text" id="categoriesCreate.nombre" wire:model="categoriesCreate.nombre"/>
                         <x-input-error-flow for='categoriesCreate.nombre' />
                     </div>
                 </div>
