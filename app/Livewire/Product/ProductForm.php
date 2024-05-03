@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Product;
 
+use App\Livewire\Forms\Product\ProductCreateForm;
 use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\State;
@@ -16,7 +17,7 @@ class ProductForm extends Component
 
     public $categories = [], $states = [];
 
-    public $name, $barcode, $purchase_price, $sale_price, $stock, $category_id, $state_id;
+    public ProductCreateForm $productCreate;
 
     public $productsEdit = [
         'name' => '',
@@ -27,8 +28,6 @@ class ProductForm extends Component
         'category_id' => '',
         'state_id' => '',
     ];
-
-    public $openCreate = false;
 
     public $productEditId = '';
  
@@ -51,12 +50,7 @@ class ProductForm extends Component
     }
 
     public function save(){
-        Product::create(
-            $this->only('name', 'barcode', 'purchase_price', 'sale_price', 'stock', 'category_id', 'state_id')
-        );
-
-        $this->reset(['name', 'barcode', 'purchase_price', 'sale_price', 'stock', 'category_id', 'state_id', 'openCreate']);
-
+        $this->productCreate->save();
     }
 
     public function edit($productid){
