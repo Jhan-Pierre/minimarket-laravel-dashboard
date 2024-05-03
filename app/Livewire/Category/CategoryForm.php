@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Category;
 
+use App\Livewire\Forms\Category\CategoryCreateForm;
+use App\Livewire\Forms\Category\CategoryEditForm;
 use App\Models\CategoryProduct;
 use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
@@ -12,19 +13,9 @@ class CategoryForm extends Component
 {
     use WithPagination;
     
-    public $categoriesCreate = [
-        'nombre' => '',
-    ];
+    public CategoryCreateForm $categoryCreate;
 
-    public $categoriesEdit = [
-        'nombre' => '',
-    ];
-
-    public $openCreate = false;
-
-    public $categoryEditId = '';
- 
-    public $openEdit = false;
+    public CategoryEditForm $categoryEdit;
 
     public $categoryDeleteId = "", $categoryDeleteName = "";
 
@@ -38,58 +29,20 @@ class CategoryForm extends Component
     }
 
     public function save(){
-  
-        $this->validate([
-            'categoriesCreate.nombre' =>'required|min:5|max:8',
-        ],[
-            'categoriesCreate.nombre.required' =>'El nombre es requerido.',
-            'categoriesCreate.nombre.min' =>'El nombre debe tener al menos 5 caracteres.',
-            'categoriesCreate.nombre.max' =>'El nombre debe tener menos de 60 caracteres.'
-        ]);
-
-        CategoryProduct::create([
-            'nombre' => $this->categoriesCreate['nombre']
-        ]);
-
-        $this->reset(['categoriesCreate', 'openCreate']);
-
+        $this->categoryCreate->save();
     }
 
     public function closeCreate(){
-        $this->resetErrorBag();
-        $this->resetValidation();
-        $this->reset(['categoriesCreate', 'openCreate']);
+        $this->categoryCreate->close();
     }
 
-    public function edit($categoryId)
-    {
+    public function edit($categoryId){
         $this->resetValidation();
-
-        $this->openEdit = true;
-
-        $this->categoryEditId = $categoryId;
-
-        $category = CategoryProduct::find($categoryId);
-        $this->categoriesEdit['nombre'] = $category->nombre;
+        $this->categoryEdit->edit($categoryId);
     }
 
-    public function update()
-    {
-        $this->validate([
-            'categoriesEdit.nombre' =>'required|min:5|max:8',
-        ],[
-            'categoriesEdit.nombre.required' =>'El nombre es requerido.',
-            'categoriesEdit.nombre.min' =>'El nombre debe tener al menos 5 caracteres.',
-            'categoriesEdit.nombre.max' =>'El nombre debe tener menos de 60 caracteres.'
-        ]);
-
-        $category = CategoryProduct::find($this->categoryEditId);
-
-        $category->update([
-            'nombre' => $this->categoriesEdit['nombre'],
-        ]);
-
-        $this->reset(['categoryEditId', 'openEdit']);
+    public function update(){
+        $this->categoryEdit->update();
     }
 
     public function render()
@@ -115,7 +68,7 @@ class CategoryForm extends Component
         $category = CategoryProduct::find($this->categoryDeleteId);
         $category->delete();
 
-        $this->reset(['categoriesEdit', 'categoryDeleteId', 'openDelete']);
+        $this->reset(['categoryEdit', 'categoryDeleteId', 'openDelete']);
     }
 
 }
