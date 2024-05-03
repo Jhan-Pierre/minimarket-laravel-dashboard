@@ -11,8 +11,10 @@ use Livewire\WithPagination;
 class CategoryForm extends Component
 {
     use WithPagination;
-
-    public $nombre;
+    
+    public $categoriesCreate = [
+        'nombre' => '',
+    ];
 
     public $categoriesEdit = [
         'nombre' => '',
@@ -36,16 +38,33 @@ class CategoryForm extends Component
     }
 
     public function save(){
-        CategoryProduct::create(
-            $this->only('nombre')
-        );
+  
+        $this->validate([
+            'categoriesCreate.nombre' =>'required|min:5|max:8',
+        ],[
+            'categoriesCreate.nombre.required' =>'El nombre es requerido.',
+            'categoriesCreate.nombre.min' =>'El nombre debe tener al menos 5 caracteres.',
+            'categoriesCreate.nombre.max' =>'El nombre debe tener menos de 60 caracteres.'
+        ]);
 
-        $this->reset(['nombre', 'openCreate']);
+        CategoryProduct::create([
+            'nombre' => $this->categoriesCreate['nombre']
+        ]);
 
+        $this->reset(['categoriesCreate', 'openCreate']);
+
+    }
+
+    public function closeCreate(){
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->reset(['categoriesCreate', 'openCreate']);
     }
 
     public function edit($categoryId)
     {
+        $this->resetValidation();
+
         $this->openEdit = true;
 
         $this->categoryEditId = $categoryId;
@@ -56,6 +75,14 @@ class CategoryForm extends Component
 
     public function update()
     {
+        $this->validate([
+            'categoriesEdit.nombre' =>'required|min:5|max:8',
+        ],[
+            'categoriesEdit.nombre.required' =>'El nombre es requerido.',
+            'categoriesEdit.nombre.min' =>'El nombre debe tener al menos 5 caracteres.',
+            'categoriesEdit.nombre.max' =>'El nombre debe tener menos de 60 caracteres.'
+        ]);
+
         $category = CategoryProduct::find($this->categoryEditId);
 
         $category->update([

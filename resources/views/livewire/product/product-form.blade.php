@@ -265,5 +265,4 @@
         </x-modal-delete-flow>    
     @endif
 
-    </div>
 </div>

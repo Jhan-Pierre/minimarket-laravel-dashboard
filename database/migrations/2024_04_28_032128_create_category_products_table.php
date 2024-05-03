@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('tb_categoria_producto', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            $table->string('nombre', 60)->unique();
             $table->timestamps();
         });
 
