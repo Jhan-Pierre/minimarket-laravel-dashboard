@@ -24,7 +24,7 @@ class CategoryCreateForm extends Form
     {
         return [
             'nombre.min' => 'El nombre debe tener al menos 5 caracteres.',
-            'nombre.max' => 'El nombre debe tener menos de 60 caracteres.'
+            'nombre.max' => 'El nombre debe exceder los 60 caracteres.'
         ];
     }
 

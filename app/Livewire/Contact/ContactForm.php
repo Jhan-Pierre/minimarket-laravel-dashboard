@@ -2,33 +2,18 @@
 
 namespace App\Livewire\Contact;
 
-use App\Mail\ContactMailable;
-use Illuminate\Support\Facades\Mail;
+use App\Livewire\Forms\Contact\ContactSendForm;
 use Livewire\Component;
 
 class ContactForm extends Component
 {
 
-    public $email, $subject, $message;
+    public ContactSendForm $contactSend;
 
-    public $openSuccess = false;
+    public function send(){
 
-    public function store(){
-        $data['name'] = auth()->user()->name;
-        $data['email'] =$this->email;
-        $data['subject'] = $this->subject;
-        $data['message'] = $this->message;
-        
-        $this->openSuccess = true;
-
-        Mail::to($data['email'])->send(new ContactMailable($data));
-
+        $this->contactSend->send();                
     }
-
-/*     public function closeModalAndResetButton()
-    {
-        $this->reset(['openSuccess']);
-    } */
 
     public function render()
     {
