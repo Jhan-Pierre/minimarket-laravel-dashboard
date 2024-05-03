@@ -20,20 +20,20 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('admin.dashboard');
+    })->middleware('can:admin.dashboard')->name('admin.dashboard');
 
     Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'create', 'store', 'delete', 'destroy')->middleware('can:admin.users.index')->names('admin.users');
 
-    Route::resource('products', ProductController::class)->names('admin.product');
+    Route::resource('products', ProductController::class)->middleware('can:admin.product.index')->names('admin.product');
 
-    Route::resource('categories', CategoryController::class)->names('admin.category');
+    Route::resource('categories', CategoryController::class)->middleware('can:admin.category.index')->names('admin.category');
 
-    Route::resource('orders', OrderController::class)->names('admin.order');
+    Route::resource('orders', OrderController::class)->middleware('can:admin.order.index')->names('admin.order');
 
-    Route::resource('suppliers', SupplierController::class)->names('admin.supplier');
+    Route::resource('suppliers', SupplierController::class)->middleware('can:supplier.users.index')->names('admin.supplier');
 
-    Route::resource('sales', SaleController::class)->names('admin.sale');
+    Route::resource('sales', SaleController::class)->middleware('can:admin.sale.index')->names('admin.sale');
 
-    Route::resource('contact', ContactController::class)->names('admin.contact');
+    Route::resource('contact', ContactController::class)->middleware('can:admin.contact')->names('admin.contact');
 
 });
