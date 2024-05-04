@@ -16,6 +16,7 @@
                         <option value="{{ $state->id }}">{{ $state->nombre }}</option>
                     @endforeach
                 </x-select-flow>
+                <x-input-error-flow for='userCreate.estado_id'/>
             </div>
             <div class="sm:col-span-2">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>

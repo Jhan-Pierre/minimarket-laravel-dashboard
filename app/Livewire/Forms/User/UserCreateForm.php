@@ -17,6 +17,7 @@ class UserCreateForm extends Form
             'email' => 'required|email|max:40|unique:users,email',
             'password' => 'required|min:8|max:50|same:passwordConfirmation',
             'selectedRoles' => 'required|array|min:1',
+            'estado_id' => 'required|exists:tb_estado,id',
         ];
     }
 
@@ -37,6 +38,8 @@ class UserCreateForm extends Form
             'selectedRoles.required' => 'Debe seleccionar al menos un rol para el usuario.',
             'selectedRoles.array' => 'El formato de los roles seleccionados no es válido.',
             'selectedRoles.min' => 'Debe seleccionar al menos un rol para el usuario.',
+            'estado_id.required' => 'El estado es obligatorio.',
+            'estado_id.exists' => 'El estado seleccionado no es válido.',
         ];
     }
 
