@@ -46,7 +46,7 @@
                         Correo
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        ID_Estado
+                        Estado
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         <span class="sr-only">Acciones</span>
