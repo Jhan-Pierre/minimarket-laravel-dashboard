@@ -4,7 +4,7 @@ namespace App\Livewire\Sale;
 
 use App\Livewire\Forms\Sale\SaleCreateForm;
 use Livewire\Component;
-use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use App\Models\VoucherType;
 use App\Models\PaymentMethod;
 
@@ -18,11 +18,15 @@ class SaleCreate extends Component
 
     public function render()
     {
-        $users = User::all();
-        $paymmentMethods = PaymentMethod::all();
-        $voucherTypes = VoucherType::all(); 
+        $paymmentMethods = Cache::remember('payment_methods', now()->addHours(1), function () {
+            return PaymentMethod::all();
+        });
 
-        return view('livewire.sale.sale-create', compact('users', 'paymmentMethods', 'voucherTypes'));
+        $voucherTypes = Cache::remember('voucher_types', now()->addHours(1), function () {
+            return VoucherType::all();
+        });
+
+        return view('livewire.sale.sale-create', compact('paymmentMethods', 'voucherTypes'));
     }
 }
 
