@@ -8,7 +8,7 @@ use Livewire\Form;
 
 class UserCreateForm extends Form
 {
-    public $name, $email, $password, $passwordConfirmation, $selectedRoles = [];
+    public $name, $email, $password, $passwordConfirmation, $selectedRoles = [], $estado_id;
 
     public function rules() 
     {
@@ -48,6 +48,7 @@ class UserCreateForm extends Form
             'name' => $this->name,
             'email' => $this->email,
             'password' => bcrypt($this->password),
+            'estado_id' => $this->estado_id,
         ]);
 
         $user->roles()->attach($this->selectedRoles);

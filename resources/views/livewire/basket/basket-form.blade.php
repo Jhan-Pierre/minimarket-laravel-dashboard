@@ -5,10 +5,8 @@
             <div class="w-full md:w-1/2">
                 <div class="relative w-full">
                     <input wire:model="basketCreate.codbarras" type="text" id="codbarras" class="block w-full p-2 pl-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Codigo de barras" required="">
-                </div>
-                
+                </div>            
             </div>
-
             <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
                 <x-button-flow wire:click="store" class="flex items-center justify-center p-4 text-sm font-medium text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                     Agregar

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'estado_id',
     ];
 
     protected $hidden = [
@@ -44,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function estado()
+    {
+        return $this->belongsTo(State::class, 'estado_id');
+    }
+
 }

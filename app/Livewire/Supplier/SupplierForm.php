@@ -50,8 +50,6 @@ class SupplierForm extends Component
         $this->reset(['name', 'ruc', 'descripcion', 'telefono', 'correo', 'direccion', 'estado_id', 'openCreate']);
     }
 
-
-
     public function edit($suppliersId)
     {
         $this->openEdit = true;

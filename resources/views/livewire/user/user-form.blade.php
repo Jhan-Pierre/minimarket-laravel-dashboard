@@ -43,7 +43,7 @@
                     fecha alta
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Fecha de cambio
+                    Estado
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Acciones</span>
@@ -56,7 +56,7 @@
                         <td class="px-6 py-3">{{ $user->name }}</td>
                         <td class="px-6 py-3">{{ $user->email }}</td>
                         <td class="px-6 py-3">{{ $user->created_at }}</td>
-                        <td class="px-6 py-3">{{ $user->created_at }}</td>
+                        <td class="px-6 py-3">{{ $user->estado ? $user->estado->nombre : 'Sin estado' }}</td>
                         <td class="px-6 py-3 flex items-center justify-end">
                             <a wire:click="delete({{ $user->id }}, '{{ $user->name }}')"  class="rounded-lg block py-2 px-4 text-sm text-gray-700 hover:bg-red-400 dark:hover:bg-red-600 dark:text-gray-200 dark:hover:text-white">
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

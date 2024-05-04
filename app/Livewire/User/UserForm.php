@@ -36,11 +36,10 @@ class UserForm extends Component
         $this->reset(['userDeleteId', 'userDeleteName', 'openDelete']);
     }
 
-    public function render()
-    {
+    public function render(){
         $users = User::orderby('created_at', 'desc')->when($this->search, function($query){
             $query->where('name', 'like', '%' . $this->search . '%') ;     
-        })->paginate(10);
+        })->with('estado')->paginate(10);
 
         return view('livewire.user.user-form',compact('users'));
     }
