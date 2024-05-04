@@ -30,7 +30,7 @@ Route::middleware([
 
     Route::resource('orders', OrderController::class)->middleware('can:admin.order.index')->names('admin.order');
 
-    Route::resource('suppliers', SupplierController::class)->middleware('can:supplier.users.index')->names('admin.supplier');
+    Route::resource('suppliers', SupplierController::class)->middleware('can:admin.supplier.index')->names('admin.supplier');
 
     Route::resource('sales', SaleController::class)->middleware('can:admin.sale.index')->names('admin.sale');
 
