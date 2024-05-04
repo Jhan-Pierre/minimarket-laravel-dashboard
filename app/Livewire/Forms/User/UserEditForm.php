@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms\User;
 
+use App\Models\State;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Livewire\Attributes\Validate;
@@ -9,10 +10,10 @@ use Livewire\Form;
 
 class UserEditForm extends Form
 {
-    public $id = "", $name, $email, $password, $passwordConfirmation, $selectedRoles = [];
+    public $id = "", $name, $email, $password, $passwordConfirmation, $selectedRoles = [], $estado_id;
 
     public $roles = [];
-
+    public $states = [];
 
     protected function rules()
     {
@@ -21,6 +22,7 @@ class UserEditForm extends Form
             'email' => 'required|email|max:40|unique:users,email,' . $this->id,
             'password' => 'nullable|min:8|max:50|same:passwordConfirmation',
             'selectedRoles' => 'required|array|min:1',
+            'estado_id' => 'required|exists:tb_estado,id',
         ];
     }
 
@@ -40,6 +42,8 @@ class UserEditForm extends Form
             'selectedRoles.required' => 'Debe seleccionar al menos un rol para el usuario.',
             'selectedRoles.array' => 'El formato de los roles seleccionados no es válido.',
             'selectedRoles.min' => 'Debe seleccionar al menos un rol para el usuario.',
+            'estado_id.required' => 'El estado es obligatorio.',
+            'estado_id.exists' => 'El estado seleccionado no es válido.',
         ];
     }
 
@@ -50,10 +54,12 @@ class UserEditForm extends Form
         $user =  User::find($this->id);
 
         $this->roles = Role::all();
+        $this->states = State::all();
 
         $this->name = $user->name;
         $this->email = $user->email;
         $this->selectedRoles = $user->roles->pluck('id')->toArray();
+        $this->estado_id = $user->estado_id;
     }
 
     public function update()
