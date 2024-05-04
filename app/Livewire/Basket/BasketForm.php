@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Basket;
 
+use App\Livewire\Forms\Sale\BasketCreateForm;
 use App\Models\TemporaryBasket;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -9,14 +10,23 @@ use Livewire\Attributes\Modelable;
 
 class BasketForm extends Component
 {
-    public $codbarras = "";
+    public BasketCreateForm $basketCreate;
 
     #[Modelable]
     public $total;
 
-    public function store(int $id){
-        DB::statement('CALL sp_registrar_cesta_temporal(?, ?)', [$id, $this->codbarras]);
-        $this->codbarras = "";
+    public function incrementQuantity($productId)
+    {
+        $this->basketCreate->incrementQuantity($productId);
+    }
+
+    public function decrementQuantity($productId)
+    {
+        $this->basketCreate->decrementQuantity($productId);
+    }
+
+    public function store(){
+        $this->basketCreate->store();
     }
 
     public function delete($productId)
@@ -33,32 +43,6 @@ class BasketForm extends Component
         $userId = auth()->id();
         TemporaryBasket::where('user_id', $userId)->delete();
     }
-
-
-    public function incrementQuantity($productId)
-{
-    $basket = TemporaryBasket::where('user_id', auth()->id())
-        ->where('product_id', $productId)
-        ->firstOrFail();
-
-    $basket->cantidad++;
-    $basket->subtotal = $basket->precio_unitario * $basket->cantidad;
-    $basket->save();
-}
-
-public function decrementQuantity($productId)
-{
-    $basket = TemporaryBasket::where('user_id', auth()->id())
-        ->where('product_id', $productId)
-        ->firstOrFail();
-
-    if ($basket->cantidad > 1) {
-        $basket->cantidad--;
-        $basket->subtotal = $basket->precio_unitario * $basket->cantidad;
-        $basket->save();
-    }
-}
-
 
     public function render()
     {

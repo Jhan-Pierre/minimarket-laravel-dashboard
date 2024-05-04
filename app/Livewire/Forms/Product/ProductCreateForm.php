@@ -31,7 +31,7 @@ class ProductCreateForm extends Form
             'name.required' => 'El nombre es obligatorio.',
             'name.min' => 'El nombre debe tener al menos 3 caracteres.',
             'name.max' => 'El nombre no debe exceder los 100 caracteres.',
-            'barcode.min' => 'El código de barras debe tener al menos 1 caracter.',
+            'barcode.min' => 'El código de barras debe tener al menos :min caracter.',
             'barcode.max' => 'El código de barras no debe exceder los 100 caracteres.',
             'barcode.required' => 'El código de barras es obligatorio.',
             'barcode.unique' => 'El código de barras ya está en uso.',
