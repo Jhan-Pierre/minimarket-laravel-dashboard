@@ -22,23 +22,5 @@ class SaleController extends Controller
     // ****************************************************************
     //esta es la forma para reeplazar el mount de los livewire
     // ****************************************************************
-    public function store(Request $request)
-    {
-        $userId = auth()->id(); 
-
-        $total = $request->total;
-        $igv = $request->igv;
-        $metodo_pago_id = $request->metodo_pago_id;
-        $tipo_comprobante_id = $request->tipo_comprobante_id;
-
-        DB::statement('CALL sp_registrar_venta(?, ?, ?, ?, ?)', [
-            $igv, 
-            $total, 
-            $tipo_comprobante_id, 
-            $metodo_pago_id, 
-            $userId
-        ]);
-
-        return redirect()->route('admin.sale.index');
-    }
+    
 }

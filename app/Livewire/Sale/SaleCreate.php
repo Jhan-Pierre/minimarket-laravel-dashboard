@@ -2,14 +2,19 @@
 
 namespace App\Livewire\Sale;
 
+use App\Livewire\Forms\Sale\SaleCreateForm;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\VoucherType;
 use App\Models\PaymentMethod;
-class SaleCreateForm extends Component
-{
 
-    public $total;
+class SaleCreate extends Component
+{
+    public SaleCreateForm $saleCreate;
+
+    public function store(){
+        $this->saleCreate->store();
+    }
 
     public function render()
     {
@@ -17,6 +22,7 @@ class SaleCreateForm extends Component
         $paymmentMethods = PaymentMethod::all();
         $voucherTypes = VoucherType::all(); 
 
-        return view('livewire.sale.sale-create-form', compact('users', 'paymmentMethods', 'voucherTypes'));
+        return view('livewire.sale.sale-create', compact('users', 'paymmentMethods', 'voucherTypes'));
     }
 }
+
