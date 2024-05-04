@@ -43,32 +43,8 @@ class UserController extends Controller
         return redirect()->route('admin.users.index', $user)->with('info', 'Usuario actualizado con éxito');
     }
     
-    public function create(){
-        $roles = Role::all(); 
-        return view("admin.users.create", compact('roles'));
-    }
-
-    public function store(Request $request, User $user){
-
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed', // Añade la regla 'confirmed'
-            'roles' => 'array',
-            'roles.*' => 'exists:roles,id'
-        ]);
-    
-        $user = new User();
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = Hash::make($validatedData['password']); // Usa Hash::make() para hashear la contraseña
-        $user->save();
-
-        if ($request->has('roles')) {
-            $user->roles()->attach($request->input('roles'));
-        }
-
-        return redirect()->route('admin.users.index');
+    public function create(){ 
+        return view("admin.users.create");
     }
 
 }
