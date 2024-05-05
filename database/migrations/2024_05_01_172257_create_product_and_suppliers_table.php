@@ -12,7 +12,9 @@ return new class extends Migration
         Schema::create('tb_producto_proveedor', function (Blueprint $table) {
             $table->foreignId('producto_id')->constrained('products');
             $table->foreignId('proveedor_id')->constrained('tb_proveedor');
+            $table->primary(['producto_id', 'proveedor_id']); // Clave primaria compuesta
         });
+        
 
         DB::table('tb_producto_proveedor')->insert([
             ['producto_id' => 1, 'proveedor_id' => 1],
