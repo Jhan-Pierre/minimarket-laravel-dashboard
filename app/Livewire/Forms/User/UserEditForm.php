@@ -73,6 +73,7 @@ class UserEditForm extends Form
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => isset($validatedData['password']) ? bcrypt($validatedData['password']) : $user->password,
+                'estado_id' => $validatedData['estado_id'],
             ]);
 
             $user->roles()->sync($this->selectedRoles);
