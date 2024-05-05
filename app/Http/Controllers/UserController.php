@@ -16,6 +16,10 @@ class UserController extends Controller
         return view('admin.users.edit', compact('id'));
     }
     
+    public function show($id){
+        return view('admin.users.show', compact('id'));
+    }
+
     public function create(){ 
         return view("admin.users.create");
     }

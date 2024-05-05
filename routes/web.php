@@ -22,7 +22,7 @@ Route::middleware([
         return view('dashboard');
     })->middleware('can:admin.dashboard')->name('admin.dashboard');
 
-    Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'create', 'store', 'delete', 'destroy')->middleware('can:admin.users.index')->names('admin.users');
+    Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'create', 'store', 'delete', 'destroy', 'show')->middleware('can:admin.users.index')->names('admin.users');
 
     Route::resource('products', ProductController::class)->middleware('can:admin.product.index')->names('admin.product');
 

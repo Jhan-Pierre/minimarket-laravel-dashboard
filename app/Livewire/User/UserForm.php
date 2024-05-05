@@ -15,11 +15,19 @@ class UserForm extends Component
     public $userDeleteId = "";
     public $userDeleteName = "";
 
+    public $openShow = false;
+    public $userSelected;
+
     #[Url(as: 's')]
     public $search = "";
 
     public function updatingSearch(){
         $this->resetPage();    
+    }
+
+    public function show($id){
+        $this->openShow = true;
+        $this->userSelected = User::with('roles', 'estado')->findOrFail($id);
     }
 
     public function delete($userId, $userName)
@@ -39,7 +47,7 @@ class UserForm extends Component
     public function render(){
         $users = User::orderby('created_at', 'desc')->when($this->search, function($query){
             $query->where('name', 'like', '%' . $this->search . '%') ;     
-        })->with('estado')->paginate(10);
+        })->with('estado', 'roles')->paginate(10);
 
         return view('livewire.user.user-form',compact('users'));
     }
