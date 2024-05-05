@@ -28,7 +28,6 @@ class Sale extends Model
     protected static function booted()
     {
         static::deleting(function ($sale) {
-            // Antes de eliminar la venta, elimina todos los detalles de venta asociados
             $sale->detalleVenta()->delete();
         });
     }

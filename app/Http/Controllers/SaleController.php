@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PaymentMethod;
-use App\Models\Sale;
 use App\Models\User;
-use App\Models\VoucherType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
     public function index()
     {
         return view('admin.sale.index');
+    }
+
+    public function show($id){
+        return view("admin.sale.show", compact('id'));
     }
 
     public function create(){
