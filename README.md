@@ -68,10 +68,10 @@ php artisan migrate --seed
 ```
 > [!WARNING]  
 > Si te sale este error:
-> Eliminar las tablas: model_has_permissions, model_has_roles, permissions, roles y role_has_permissions
+> Eliminar la BD, y vuelve a crearla
 > Luego, limpia la cache:
 >```bash
-> php artisan config:cache
+> php artisan config:clear
 >```
 >Finalmente, realiza nuevamente la migración.
 >
