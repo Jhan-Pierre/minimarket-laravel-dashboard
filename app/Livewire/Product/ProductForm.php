@@ -67,7 +67,7 @@ class ProductForm extends Component
         $product = Product::find($this->productDeleteId);
         $product->delete();
 
-        $this->reset(['productsEdit', 'productDeleteId', 'openDelete']);
+        $this->reset(['productDeleteId', 'openDelete']);
 
     }
 
