@@ -73,12 +73,3 @@
     
     </div> 
 </div>
-
-{{-- <h1>Impuesto: {{ $sale->impuesto }}</h1>
-    <h1>Total: {{ $sale->total }}</h1>
-    <h1>Fecha: {{ $sale->created_at }}</h1>
-    @foreach($sale->detalleVenta as $detalle)
-        <h1>Cantidad: {{ $detalle->cantidad }}</h1>
-    @endforeach
-    <h1>{{$sale->metodoPago->metodo_pago}}</h1>
-    <h1>{{$sale->tipocomprobante->comprobante}}</h1> --}}
