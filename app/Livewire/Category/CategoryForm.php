@@ -68,7 +68,7 @@ class CategoryForm extends Component
         $category = CategoryProduct::find($this->categoryDeleteId);
         $category->delete();
 
-        $this->reset(['categoryEdit', 'categoryDeleteId', 'openDelete']);
+        $this->reset(['openDelete', 'categoryDeleteId']);
     }
 
 }

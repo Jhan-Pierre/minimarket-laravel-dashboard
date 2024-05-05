@@ -1,4 +1,4 @@
-use minimarket_laravel11;
+use defaultdb;
 
 DELIMITER //
 CREATE PROCEDURE sp_registrar_cesta_temporal(
