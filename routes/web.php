@@ -28,7 +28,7 @@ Route::middleware([
 
     Route::resource('categories', CategoryController::class)->middleware('can:admin.category.index')->names('admin.category');
 
-    Route::resource('orders', OrderController::class)->middleware('can:admin.order.index')->names('admin.order');
+    Route::resource('orders', OrderController::class)->names('admin.order');
 
     Route::resource('suppliers', SupplierController::class)->middleware('can:admin.supplier.index')->names('admin.supplier');
 
